@@ -2,7 +2,9 @@
 
 This project contains part of a simple .NET application for a Bike Shop.
 
-The project has a handful of initial tests, three of which are failing. 
+The project has a handful of initial tests, three of which are failing due to bugs in the code. 
+
+The test spec is correct, but we need to fix the bugs!
 
 As an interview challenge, we'd like to pair and get the failing tests to pass.
 
