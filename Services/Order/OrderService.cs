@@ -29,7 +29,7 @@ namespace BikeShopAPI.Services.Order
             var repairOrders = JsonConvert.DeserializeObject<List<RepairOrder>>(_sampleData);
             
             var customerOrders = repairOrders
-                .Where(order => order.Bike.Id == customer.Id)
+                .Where(order => order.Bike.Owner.Id == customer.Id)
                 .ToList();
 
             return customerOrders;
@@ -45,7 +45,7 @@ namespace BikeShopAPI.Services.Order
             var repairOrders = JsonConvert.DeserializeObject<List<RepairOrder>>(_sampleData);
             
             return repairOrders
-                .Where(order => order.Bike.Owner.Id == customer.Id)
+                .Where(order => order.Bike.Owner.Id == customer.Id && order.PaidStatus.ToString() == "Paid")
                 .Sum(order => order.ChargesUsd);
         }
     }
