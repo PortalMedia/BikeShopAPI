@@ -11,7 +11,7 @@ namespace BikeShopAPI.Services.Order
         private readonly string _sampleData;
         
         /// <summary>
-        /// Handles all business logic for processing Customer Orders
+        /// Handles all business logic for processing customer orders
         /// </summary>
         public OrderService()
         {
@@ -29,14 +29,14 @@ namespace BikeShopAPI.Services.Order
             var repairOrders = JsonConvert.DeserializeObject<List<RepairOrder>>(_sampleData);
             
             var customerOrders = repairOrders
-                .Where(order => order.Bike.Id == customer.Id)
+                .Where(order => order.Bike.Owner.Id == customer.Id)
                 .ToList();
 
             return customerOrders;
         }
         
         /// <summary>
-        /// Provides a USD sum of Customer Orders Where the PaidStatus is "Paid"
+        /// Provides a USD sum of customer orders where the PaidStatus is "Paid"
         /// </summary>
         /// <param name="customer"></param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace BikeShopAPI.Services.Order
             var repairOrders = JsonConvert.DeserializeObject<List<RepairOrder>>(_sampleData);
             
             return repairOrders
-                .Where(order => order.Bike.Owner.Id == customer.Id)
+                .Where(order => order.Bike.Owner.Id == customer.Id && order.PaidStatus == PaidStatus.Paid)
                 .Sum(order => order.ChargesUsd);
         }
     }
