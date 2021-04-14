@@ -7,7 +7,7 @@ namespace BikeShopAPI.Services.Email
     {
         // Regex Matches Email
         private const string ValidEmailAddressPattern 
-            = "^[a-zA-Z1-9._+-]+@[a-zA-Z1-9.-]+\\.[a-zA-Z0-9-.]+$";
+            = "^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z0-9-.]+$";
         
         /// <summary>
         /// Returns true if the provided email matches a valid email pattern
