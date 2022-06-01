@@ -1,7 +1,3 @@
-namespace BikeShopAPI.Controllers
-{
-    public class RepairOrderController
-    {
-        
-    }
+namespace BikeShopAPI.Controllers {
+    public class RepairOrderController { }
 }

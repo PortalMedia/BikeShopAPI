@@ -1,10 +1,7 @@
 using System;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
-namespace BikeShopAPI.Models
-{
-    public class RepairOrder
-    {
+namespace BikeShopAPI.Models {
+    public class RepairOrder {
         public long Id { get; set; }
         public Bicycle Bike { get; set; }
         public DateTime CreatedOn { get; set; }
@@ -15,6 +12,8 @@ namespace BikeShopAPI.Models
     }
 
     public enum PaidStatus {
-        Paid, Unpaid, Waived
+        Paid,
+        Unpaid,
+        Waived
     }
 }
