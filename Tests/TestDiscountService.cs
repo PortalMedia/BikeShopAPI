@@ -16,7 +16,7 @@ namespace BikeShopAPI.Tests {
         }
 
         [Fact]
-        public void PercentOffDiscount_AdjustsOrderTotal_GivenRepairOrder() {
+        public void PercentOffDiscount_AdjustsChargesUsd_GivenRepairOrder() {
             var order = new RepairOrder {
                 Id = 232,
                 ChargesUsd = 100.00m
@@ -28,7 +28,7 @@ namespace BikeShopAPI.Tests {
         }
 
         [Fact]
-        public void DollarOffDiscount_AdjustsOrderTotal_GivenRepairOrder() {
+        public void DollarOffDiscount_AdjustsChargesUsd_GivenRepairOrder() {
             var order = new RepairOrder {
                 Id = 232,
                 ChargesUsd = 100.00m
@@ -36,11 +36,11 @@ namespace BikeShopAPI.Tests {
 
             var discount = new DollarOffDiscount(5);
             _discountService.ApplyDiscount(order, discount);
-            order.ChargesUsd.Should().Be(50m);
+            order.ChargesUsd.Should().Be(95m);
         }
 
         [Fact]
-        public void DollarOffDiscount_ExceedingTotalCostDoesNotCreateNegativeCharges_GivenRepairOrder() {
+        public void DollarOffDiscount_ExceedingTotalCostDoesNotCreateNegativeChargesUsd_GivenRepairOrder() {
             var order = new RepairOrder {
                 Id = 232,
                 ChargesUsd = 5.00m

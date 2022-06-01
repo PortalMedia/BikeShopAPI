@@ -25,7 +25,7 @@ namespace BikeShopAPI.Services.Discounts {
         }
 
         public void ApplyDiscount(RepairOrder order, Discount discount) {
-            discount.ApplyTo(order);
+            discount.CalculateForOrder(order);
 
             _logger.LogInformation(
                 "Applying discount to Order {OrderId}", order.Id
