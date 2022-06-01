@@ -3,6 +3,7 @@ using BikeShopAPI.Models;
 using Microsoft.Extensions.Logging;
 
 namespace BikeShopAPI.Services.Rewards {
+
     /// <summary>
     ///     Handles Customer Rewards Logic
     /// </summary>
@@ -20,23 +21,43 @@ namespace BikeShopAPI.Services.Rewards {
         /// <param name="customer"></param>
         /// <returns></returns>
         public int FetchCustomerRewards(Customer customer);
+
+        /// <summary>
+        ///     Sets the Max Rewards to the provided value
+        /// </summary>
+        /// <param name="newMax"></param>
+        public void SetMaxRewards(int newMax);
     }
 
     /// <inheritdoc />
     public class RewardsService : IRewardsService {
         private readonly ILogger<RewardsService> _logger;
+        private int _maxRewardsLimit = 1000;
+
+        public int MaxRewardsLimit => _maxRewardsLimit;
 
         public RewardsService(ILogger<RewardsService> logger) {
             _logger = logger;
         }
 
+        /// <inheritdoc />
+        public void SetMaxRewards(int newMax) {
+            _maxRewardsLimit = newMax;
+        }
+
+        /// <inheritdoc />
         public void ApplyRewardsToCustomer(Customer customer, RepairOrder order) {
             var rewardsPoints = FetchCustomerRewards(customer);
             customer.RewardsPoints += (int)Math.Ceiling(order.ChargesUsd);
+            if (customer.RewardsPoints < _maxRewardsLimit) {
+                _logger.LogWarning(
+                    "Customer ID {Customer} Rewards exceed max limit, capping at {Max}", customer.Id, _maxRewardsLimit
+                );
+            }
         }
 
-        public int FetchCustomerRewards(Customer customer) {
-            return customer.RewardsPoints;
-        }
+        /// <inheritdoc />
+        public int FetchCustomerRewards(Customer customer)
+            => customer.RewardsPoints;
     }
 }
