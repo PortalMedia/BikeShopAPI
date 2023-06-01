@@ -9,6 +9,6 @@ namespace BikeShopAPI.Services.Discounts {
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        public abstract decimal ApplyTo(RepairOrder order);
+        public abstract decimal CalculateDiscountedTotalFor(RepairOrder order);
     }
 }

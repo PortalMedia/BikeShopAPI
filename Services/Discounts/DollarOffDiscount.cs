@@ -10,7 +10,7 @@ namespace BikeShopAPI.Services.Discounts {
 
         public override decimal Amount => _dollarOffAmount;
 
-        public override decimal ApplyTo(RepairOrder order) {
+        public override decimal CalculateDiscountedTotalFor(RepairOrder order) {
             return order.ChargesUsd - _dollarOffAmount;
         }
     }

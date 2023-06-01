@@ -7,13 +7,13 @@ namespace BikeShopAPI.Services.Discounts {
     /// </summary>
     public interface IDiscountService {
         /// <summary>
-        ///     Given a RepairOrder and a Discount, returns a mutated version of the given RepairOrder
-        ///     with the discount applied
+        ///     Given a RepairOrder and a Discount, mutates the given RepairOrder
+        ///     by applying the provided discount 
         /// </summary>
         /// <param name="order">Order instance</param>
         /// <param name="discount">Discount instance</param>
         /// <returns></returns>
-        public void ApplyDiscount(RepairOrder order, Discount discount);
+        public void ApplyDiscountToOrder(RepairOrder order, Discount discount);
     }
 
     /// <inheritdoc />
@@ -24,8 +24,8 @@ namespace BikeShopAPI.Services.Discounts {
             _logger = logger;
         }
 
-        public void ApplyDiscount(RepairOrder order, Discount discount) {
-            discount.ApplyTo(order);
+        public void ApplyDiscountToOrder(RepairOrder order, Discount discount) {
+            discount.CalculateDiscountedTotalFor(order);
 
             _logger.LogInformation(
                 "Applying discount to Order {OrderId}", order.Id

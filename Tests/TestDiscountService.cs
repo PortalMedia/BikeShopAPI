@@ -23,7 +23,7 @@ namespace BikeShopAPI.Tests {
             };
 
             var discount = new PercentOffDiscount(0.5m);
-            _discountService.ApplyDiscount(order, discount);
+            _discountService.ApplyDiscountToOrder(order, discount);
             order.ChargesUsd.Should().Be(50m);
         }
 
@@ -35,8 +35,8 @@ namespace BikeShopAPI.Tests {
             };
 
             var discount = new DollarOffDiscount(5);
-            _discountService.ApplyDiscount(order, discount);
-            order.ChargesUsd.Should().Be(50m);
+            _discountService.ApplyDiscountToOrder(order, discount);
+            order.ChargesUsd.Should().Be(95m);
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace BikeShopAPI.Tests {
             };
 
             var discount = new DollarOffDiscount(10);
-            _discountService.ApplyDiscount(order, discount);
+            _discountService.ApplyDiscountToOrder(order, discount);
             order.ChargesUsd.Should().Be(0);
         }
     }
