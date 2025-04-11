@@ -5,6 +5,7 @@
         <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
         <GenerateProgramFile>false</GenerateProgramFile>
         <IsPackable>false</IsPackable>
+        <LangVersion>12</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
